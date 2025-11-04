@@ -5,9 +5,11 @@ import java.util.List;
 import java.util.Scanner;
 
 public class Main {
+
+    private static final Scanner scanner = new Scanner(System.in);
+    private static final List<Person> listOfPeople = new ArrayList<>();
+
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-        List<Person> listOfPeople = new ArrayList<>();
 
         listOfPeople.add(new Person("Liam", "Rodriguez", 27));
         listOfPeople.add(new Person("Olivia", "Chen", 34));
@@ -20,6 +22,17 @@ public class Main {
         listOfPeople.add(new Person("Isabella", "Davis", 30));
         listOfPeople.add(new Person("Mason", "Wilson", 19));
 
+        matchingPeople();
+
+        averageAge();
+
+        oldestPerson();
+
+        youngestPerson();
+
+    }
+
+    private static void matchingPeople(){
         System.out.print("Give me a first name: ");
         String firstName = scanner.nextLine();
 
@@ -33,7 +46,9 @@ public class Main {
         for (Person matchingPerson : matchingPeople) {
             System.out.println("Matching people: " + matchingPerson);
         }
+    }
 
+    private static void averageAge (){
         int averageAge = 0;
         int ageTotal = 0;
         for (Person listOfPeopleAge : listOfPeople) {
@@ -41,7 +56,9 @@ public class Main {
         }
         averageAge = ageTotal/listOfPeople.size();
         System.out.println("The Average age is: " + averageAge);
+    }
 
+    private static void oldestPerson(){
         int oldestAge = 0;
         for (Person listOfPerson : listOfPeople) {
             if (oldestAge < listOfPerson.getAge()){
@@ -49,16 +66,15 @@ public class Main {
             }
         }
         System.out.println("The Oldest Person is: " + oldestAge);
+    }
 
-        int youngestAge = 0;
-        int temp = oldestAge;
+    private static void youngestPerson(){
+        int youngestAge = Integer.MAX_VALUE;
         for (Person listOfPerson : listOfPeople) {
-            if (temp > listOfPerson.getAge()){
+            if (youngestAge > listOfPerson.getAge()){
                 youngestAge = listOfPerson.getAge();
-                temp = listOfPerson.getAge();
             }
         }
         System.out.println("The youngest person is: " + youngestAge);
-
     }
 }
